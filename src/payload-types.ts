@@ -64,6 +64,7 @@ export type SupportedTimezones =
 export interface Config {
   auth: {
     users: UserAuthOperations;
+    webServiceUsers: WebServiceUserAuthOperations;
   };
   blocks: {};
   collections: {
@@ -74,11 +75,18 @@ export interface Config {
     users: User;
     access: Access;
     groups: Group;
+    companies: Company;
+    opportunities: Opportunity;
+    people: Person;
+    resources: Resource;
+    tasks: Task;
+    webServiceUsers: WebServiceUser;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
     search: Search;
     exports: Export;
+    'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -93,11 +101,18 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     access: AccessSelect<false> | AccessSelect<true>;
     groups: GroupsSelect<false> | GroupsSelect<true>;
+    companies: CompaniesSelect<false> | CompaniesSelect<true>;
+    opportunities: OpportunitiesSelect<false> | OpportunitiesSelect<true>;
+    people: PeopleSelect<false> | PeopleSelect<true>;
+    resources: ResourcesSelect<false> | ResourcesSelect<true>;
+    tasks: TasksSelect<false> | TasksSelect<true>;
+    webServiceUsers: WebServiceUsersSelect<false> | WebServiceUsersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -106,6 +121,7 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
+  fallbackLocale: null;
   globals: {
     header: Header;
     footer: Footer;
@@ -115,9 +131,13 @@ export interface Config {
     footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: null;
-  user: User & {
-    collection: 'users';
-  };
+  user:
+    | (User & {
+        collection: 'users';
+      })
+    | (WebServiceUser & {
+        collection: 'webServiceUsers';
+      });
   jobs: {
     tasks: {
       createCollectionExport: TaskCreateCollectionExport;
@@ -131,6 +151,24 @@ export interface Config {
   };
 }
 export interface UserAuthOperations {
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
+  };
+}
+export interface WebServiceUserAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -804,6 +842,158 @@ export interface Group {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies".
+ */
+export interface Company {
+  id: string;
+  name: string;
+  accountOwner: (string | User)[];
+  address?: {
+    address?: string | null;
+    city?: string | null;
+    state?: string | null;
+    county?: string | null;
+    'zip-code'?: number | null;
+  };
+  socialMedia?: {
+    website?: string | null;
+    'linked-in'?: string | null;
+    facebook?: string | null;
+    x?: string | null;
+    instagram?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "opportunities".
+ */
+export interface Opportunity {
+  id: string;
+  name: string;
+  company: string | Company;
+  totalValue?: number | null;
+  dueDate?: string | null;
+  awardDate?: string | null;
+  startDate?: string | null;
+  stage?: ('new' | 'screening' | 'meeting' | 'proposal' | 'customer' | 'rejected') | null;
+  pointOfContact: string | Person;
+  services?:
+    | {
+        product: string;
+        module?: string | null;
+        startDate: string;
+        endDate: string;
+        amount: number;
+        id?: string | null;
+      }[]
+    | null;
+  resell?:
+    | {
+        product: string;
+        module?: string | null;
+        sku?: string | null;
+        amount: number;
+        margin?: number | null;
+        startDate: string;
+        endDate: string;
+        reoccurring?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people".
+ */
+export interface Person {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  jobTitle?: string | null;
+  phoneNumber?: string | null;
+  company: string | Company;
+  address?: {
+    address?: string | null;
+    city?: string | null;
+    state?: string | null;
+    county?: string | null;
+    'zip-code'?: number | null;
+  };
+  socialMedia?: {
+    website?: string | null;
+    'linked-in'?: string | null;
+    facebook?: string | null;
+    x?: string | null;
+    instagram?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources".
+ */
+export interface Resource {
+  id: string;
+  name?: string | null;
+  employee: string | User;
+  opportunity: string | Opportunity;
+  rateReceived: number;
+  ratePaid: number;
+  startDate: string;
+  endDate: string;
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tasks".
+ */
+export interface Task {
+  id: string;
+  title: string;
+  description: string;
+  dueDate: string;
+  status: 'new' | 'inProgress' | 'pending' | 'closedComplete' | 'closedIncomplete';
+  opportunity?: (string | null) | Opportunity;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "webServiceUsers".
+ */
+export interface WebServiceUser {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -912,6 +1102,23 @@ export interface Export {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv".
+ */
+export interface PayloadKv {
+  id: string;
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1041,6 +1248,30 @@ export interface PayloadLockedDocument {
         value: string | Group;
       } | null)
     | ({
+        relationTo: 'companies';
+        value: string | Company;
+      } | null)
+    | ({
+        relationTo: 'opportunities';
+        value: string | Opportunity;
+      } | null)
+    | ({
+        relationTo: 'people';
+        value: string | Person;
+      } | null)
+    | ({
+        relationTo: 'resources';
+        value: string | Resource;
+      } | null)
+    | ({
+        relationTo: 'tasks';
+        value: string | Task;
+      } | null)
+    | ({
+        relationTo: 'webServiceUsers';
+        value: string | WebServiceUser;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: string | Redirect;
       } | null)
@@ -1059,16 +1290,17 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'exports';
         value: string | Export;
-      } | null)
-    | ({
-        relationTo: 'payload-jobs';
-        value: string | PayloadJob;
       } | null);
   globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: string | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: string | User;
+      }
+    | {
+        relationTo: 'webServiceUsers';
+        value: string | WebServiceUser;
+      };
   updatedAt: string;
   createdAt: string;
 }
@@ -1078,10 +1310,15 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   id: string;
-  user: {
-    relationTo: 'users';
-    value: string | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: string | User;
+      }
+    | {
+        relationTo: 'webServiceUsers';
+        value: string | WebServiceUser;
+      };
   key?: string | null;
   value?:
     | {
@@ -1462,6 +1699,159 @@ export interface GroupsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies_select".
+ */
+export interface CompaniesSelect<T extends boolean = true> {
+  name?: T;
+  accountOwner?: T;
+  address?:
+    | T
+    | {
+        address?: T;
+        city?: T;
+        state?: T;
+        county?: T;
+        'zip-code'?: T;
+      };
+  socialMedia?:
+    | T
+    | {
+        website?: T;
+        'linked-in'?: T;
+        facebook?: T;
+        x?: T;
+        instagram?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "opportunities_select".
+ */
+export interface OpportunitiesSelect<T extends boolean = true> {
+  name?: T;
+  company?: T;
+  totalValue?: T;
+  dueDate?: T;
+  awardDate?: T;
+  startDate?: T;
+  stage?: T;
+  pointOfContact?: T;
+  services?:
+    | T
+    | {
+        product?: T;
+        module?: T;
+        startDate?: T;
+        endDate?: T;
+        amount?: T;
+        id?: T;
+      };
+  resell?:
+    | T
+    | {
+        product?: T;
+        module?: T;
+        sku?: T;
+        amount?: T;
+        margin?: T;
+        startDate?: T;
+        endDate?: T;
+        reoccurring?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people_select".
+ */
+export interface PeopleSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  email?: T;
+  jobTitle?: T;
+  phoneNumber?: T;
+  company?: T;
+  address?:
+    | T
+    | {
+        address?: T;
+        city?: T;
+        state?: T;
+        county?: T;
+        'zip-code'?: T;
+      };
+  socialMedia?:
+    | T
+    | {
+        website?: T;
+        'linked-in'?: T;
+        facebook?: T;
+        x?: T;
+        instagram?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources_select".
+ */
+export interface ResourcesSelect<T extends boolean = true> {
+  name?: T;
+  employee?: T;
+  opportunity?: T;
+  rateReceived?: T;
+  ratePaid?: T;
+  startDate?: T;
+  endDate?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tasks_select".
+ */
+export interface TasksSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  dueDate?: T;
+  status?: T;
+  opportunity?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "webServiceUsers_select".
+ */
+export interface WebServiceUsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  enableAPIKey?: T;
+  apiKey?: T;
+  apiKeyIndex?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -1679,6 +2069,14 @@ export interface ExportsSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv_select".
+ */
+export interface PayloadKvSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

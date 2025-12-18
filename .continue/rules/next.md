@@ -13,4 +13,7 @@ description: NexJS Developer
  <web_source>https://nextjs.org/docs</web_source>
  <web_source>https://github.com/payloadcms/payload</web_source>
  <web_source>https://orm.drizzle.team/docs/overview</web_source>
+ <web_source>https://ui.shadcn.com/</web_source>
+ <web_source>https://developer.mozilla.org/</web_source>
+ <web_source>https://www.w3schools.com/js/</web_source>
  </important>

@@ -20,8 +20,21 @@ export const Users: CollectionConfig = {
   auth: true,
   fields: [
     {
+      name: 'email',
+      type: 'text',
+      required: true,
+    },
+    {
       name: 'name',
       type: 'text',
+      access: {
+        read: () => {
+          return true
+        },
+        update: () => {
+          return false
+        },
+      },
     },
     {
       name: 'firstName',

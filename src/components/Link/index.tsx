@@ -18,6 +18,7 @@ type CMSLinkType = {
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
+  onClick?: any
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {

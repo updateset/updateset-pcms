@@ -12,6 +12,12 @@ import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
 import { Groups } from './collections/Groups'
+import { Companies } from './collections/Companies'
+import { Opportunities } from './collections/Opportunities'
+import { People } from './collections/People'
+import { Tasks } from './collections/Tasks'
+import { Resources } from './collections/Resources'
+import { WebServiceUsers } from './collections/WebServiceUsers'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -70,7 +76,21 @@ export default buildConfig({
     push: true,
     blocksAsJSON: true,
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Access, Groups],
+  collections: [
+    Pages,
+    Posts,
+    Media,
+    Categories,
+    Users,
+    Access,
+    Groups,
+    Companies,
+    Opportunities,
+    People,
+    Resources,
+    Tasks,
+    WebServiceUsers,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
