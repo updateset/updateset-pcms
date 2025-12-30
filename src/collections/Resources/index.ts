@@ -76,4 +76,5 @@ export const Resources: CollectionConfig<'resources'> = {
     maxPerDoc: 50,
     drafts: false,
   },
+  timestamps: true,
 }

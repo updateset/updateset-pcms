@@ -27,4 +27,5 @@ export const Categories: CollectionConfig = {
       position: undefined,
     }),
   ],
+  timestamps: true,
 }

@@ -71,4 +71,5 @@ export const Tasks: CollectionConfig<'tasks'> = {
     maxPerDoc: 50,
     drafts: false,
   },
+  timestamps: true,
 }

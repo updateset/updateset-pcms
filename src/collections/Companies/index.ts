@@ -98,4 +98,5 @@ export const Companies: CollectionConfig<'companies'> = {
     maxPerDoc: 50,
     drafts: false,
   },
+  timestamps: true,
 }

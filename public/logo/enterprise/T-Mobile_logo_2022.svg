@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   x="0px"
+   y="0px"
+   viewBox="0 0 128 128"
+   xml:space="preserve"
+   width="128"
+   height="128"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="T-Mobile_logo_2022.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs2" /><sodipodi:namedview
+   id="namedview2"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="5.8132336"
+   inkscape:cx="-10.57931"
+   inkscape:cy="59.777401"
+   inkscape:window-width="1920"
+   inkscape:window-height="1057"
+   inkscape:window-x="1912"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg2" />
+  <path
+   fill="#e20074"
+   d="M 32,32 H 96 V 96 H 32 Z"
+   id="path1"
+   style="stroke-width:1.23077" />
+  <path
+   d="m 53.946092,71.312677 h -9.142867 v -9.142855 h 9.126732 v 9.142855 z m -9.14288,-30.169822 v 15.544468 h 2.741243 v -0.451495 c 0,-7.320739 4.111877,-11.884099 11.884099,-11.884099 h 0.451508 v 32.91104 c 0,4.563373 -1.82213,6.401613 -6.401613,6.401613 h -1.370621 v 3.192738 h 23.768197 v -3.192738 h -1.370622 c -4.56336,0 -6.4016,-1.822117 -6.4016,-6.4016 V 44.335594 h 0.451483 c 7.772246,0 11.884111,4.56336 11.884111,11.884098 v 0.451496 H 83.18064 V 41.142855 Z m 29.250696,30.169822 h 9.142855 v -9.142855 h -9.126732 v 9.142855 z"
+   fill="#ffffff"
+   id="path2"
+   style="stroke-width:1.23077" />
+</svg>

@@ -175,4 +175,5 @@ export const Opportunities: CollectionConfig<'opportunities'> = {
     maxPerDoc: 50,
     drafts: false,
   },
+  timestamps: true,
 }

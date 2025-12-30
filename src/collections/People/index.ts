@@ -111,4 +111,5 @@ export const People: CollectionConfig<'people'> = {
     maxPerDoc: 50,
     drafts: false,
   },
+  timestamps: true,
 }

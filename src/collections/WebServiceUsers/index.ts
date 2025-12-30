@@ -6,4 +6,5 @@ export const WebServiceUsers: CollectionConfig = {
     useAPIKey: true,
   },
   fields: [],
+  timestamps: true,
 }

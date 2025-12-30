@@ -45,4 +45,9 @@ export const Groups: CollectionConfig<'groups'> = {
     },
   ],
   hooks: {},
+  versions: {
+    maxPerDoc: 50,
+    drafts: false,
+  },
+  timestamps: true,
 }

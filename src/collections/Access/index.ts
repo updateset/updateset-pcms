@@ -81,4 +81,9 @@ export const Access: CollectionConfig<'access'> = {
     },
   ],
   hooks: {},
+  versions: {
+    maxPerDoc: 50,
+    drafts: false,
+  },
+  timestamps: true,
 }
