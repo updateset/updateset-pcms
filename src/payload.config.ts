@@ -93,7 +93,7 @@ export default buildConfig({
   plugins: [
     ...plugins,
     importExportPlugin({
-      collections: ['users', 'posts'],
+      collections: ['groups', 'opportunities', 'people', 'resources', 'tasks', 'companies'],
     }),
   ],
   secret: process.env.PAYLOAD_SECRET,
