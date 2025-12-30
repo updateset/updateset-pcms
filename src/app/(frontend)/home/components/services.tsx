@@ -187,6 +187,7 @@ export function Services({ services }: ServicesProps) {
         <div
           ref={animationRef}
           data-us-project="vmYNaUGJGU2jLtpFDpTe"
+          data-us-production="true"
           style={{ width: '1440px', height: '900px' }}
         />
       </div>

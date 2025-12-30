@@ -40,6 +40,7 @@ export function Hero() {
       {/* Unicorn.studio Interactive Background Element */}
       <div
         data-us-project="Rl7VyWubJZuUIlC0N7wY"
+        data-us-production="true"
         className="absolute inset-0 z-0"
         style={{ width: '100%', height: '100%' }}
         aria-label="Unicorn.studio interactive background container"
