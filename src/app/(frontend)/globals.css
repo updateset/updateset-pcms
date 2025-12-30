@@ -5,7 +5,6 @@
 @config "../../../tailwind.config.mjs";
 
 @custom-variant dark (&:is(.dark *));
-@custom-variant light (&:is(.light *));
 
 :root {
   --background: #f0f8ff;
@@ -67,8 +66,7 @@
 
 [data-theme='dark'],
 [data-theme='light'],
-.dark,
-.light {
+.dark {
   --background: #141b24;
   --foreground: #f2f2f2;
   --card: #1a222c;
