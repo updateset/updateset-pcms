@@ -161,16 +161,16 @@ export function Products() {
           <div className="relative shrink-0">
             {/* Background Image */}
             <div
-              className="absolute inset-0 pointer-events-none overflow-hidden"
-              style={{ bottom: -250, right: -180 }}
+              className="absolute inset-0 pointer-events-none overflow-hidden hidden lg:block"
+              style={{ bottom: -150, right: -50 }}
             >
               <Image
                 src="/hompage_circles.gif"
                 alt=""
-                className="w-full h-full object-contain object-right hidden md:block"
+                className="w-full h-full object-contain object-right"
                 aria-hidden="true"
-                width={400}
-                height={400}
+                width={600}
+                height={600}
               />
             </div>
             <a

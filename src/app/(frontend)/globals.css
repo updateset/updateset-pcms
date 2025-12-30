@@ -64,7 +64,8 @@
   --spacing: 0.25rem;
 }
 
-[data-theme='dark'] {
+[data-theme='dark'],
+[data-theme='light'] {
   --background: #141b24;
   --foreground: #f2f2f2;
   --card: #1a222c;
