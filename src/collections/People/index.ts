@@ -15,8 +15,8 @@ export const People: CollectionConfig<'people'> = {
   },
   defaultPopulate: {},
   admin: {
-    defaultColumns: ['firstName', 'updatedAt'],
-    useAsTitle: 'firstName',
+    defaultColumns: ['email', 'firstName', 'lastName', 'updatedAt'],
+    useAsTitle: 'email',
   },
   fields: [
     {

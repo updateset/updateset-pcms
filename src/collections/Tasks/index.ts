@@ -66,6 +66,11 @@ export const Tasks: CollectionConfig<'tasks'> = {
       type: 'relationship',
       relationTo: 'opportunities',
     },
+    {
+      name: 'assignedTo',
+      type: 'relationship',
+      relationTo: 'users',
+    },
   ],
   versions: {
     maxPerDoc: 50,

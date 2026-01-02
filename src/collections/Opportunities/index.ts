@@ -19,7 +19,7 @@ export const Opportunities: CollectionConfig<'opportunities'> = {
   // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>
   defaultPopulate: {},
   admin: {
-    defaultColumns: ['name', 'updatedAt'],
+    defaultColumns: ['name', 'company', 'updatedAt'],
     useAsTitle: 'name',
   },
   fields: [
@@ -82,6 +82,10 @@ export const Opportunities: CollectionConfig<'opportunities'> = {
         {
           label: 'Customer',
           value: 'customer',
+        },
+        {
+          label: 'Closed',
+          value: 'closed',
         },
         {
           label: 'Rejected',

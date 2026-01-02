@@ -15,8 +15,7 @@ export const computeName: CollectionBeforeValidateHook = async ({ data }) => {
           },
         },
         select: {
-          firstName: true,
-          lastName: true,
+          email: true,
         },
         limit: 1,
         depth: 0,
@@ -36,7 +35,7 @@ export const computeName: CollectionBeforeValidateHook = async ({ data }) => {
         depth: 0,
       })
 
-      data.name = `${user.docs[0].firstName} ${user.docs[0].lastName} - ${opportunity.docs[0].name}`
+      data.name = `${user.docs[0].email} - ${opportunity.docs[0].name}`
     } catch (error) {
       if (error instanceof Error)
         throw new Error(`Error getting data to compute name ${error.message}`)

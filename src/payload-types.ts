@@ -890,7 +890,7 @@ export interface Opportunity {
   dueDate?: string | null;
   awardDate?: string | null;
   startDate?: string | null;
-  stage?: ('new' | 'screening' | 'meeting' | 'proposal' | 'customer' | 'rejected') | null;
+  stage?: ('new' | 'screening' | 'meeting' | 'proposal' | 'customer' | 'closed' | 'rejected') | null;
   pointOfContact: string | Person;
   services?:
     | {
@@ -975,6 +975,7 @@ export interface Task {
   dueDate: string;
   status: 'new' | 'inProgress' | 'pending' | 'closedComplete' | 'closedIncomplete';
   opportunity?: (string | null) | Opportunity;
+  assignedTo?: (string | null) | User;
   updatedAt: string;
   createdAt: string;
 }
@@ -1836,6 +1837,7 @@ export interface TasksSelect<T extends boolean = true> {
   dueDate?: T;
   status?: T;
   opportunity?: T;
+  assignedTo?: T;
   updatedAt?: T;
   createdAt?: T;
 }
