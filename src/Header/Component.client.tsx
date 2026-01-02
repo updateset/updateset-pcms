@@ -15,6 +15,8 @@ import { SearchIcon } from 'lucide-react'
 import { CMSLink } from '@/components/Link'
 import { cn } from '@/utilities/ui'
 
+import Clarity from '@microsoft/clarity'
+
 interface HeaderClientProps {
   data: Header
 }
@@ -53,6 +55,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const [theme, setTheme] = useState<string | null>(null)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
+
+  useEffect(() => {
+    const projectId = 'hgxsyq9qnv'
+    Clarity.init(projectId)
+  }, [])
 
   useEffect(() => {
     setHeaderTheme('dark')
