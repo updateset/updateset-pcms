@@ -7,17 +7,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-interface UnicornStudio {
-  isInitialized: boolean
-  init?: () => void
-}
-
-declare global {
-  interface Window {
-    UnicornStudio?: UnicornStudio
-  }
-}
-
 export interface Service {
   title: string
   description: string
@@ -57,49 +46,6 @@ export function Services({ services }: ServicesProps) {
     const color = glowColors[index % glowColors.length]
     return hexToRgba(color.hex, 0.6)
   }
-
-  // Load Unicorn Studios script
-  useEffect(() => {
-    // Initialize tracking object if it doesn't exist
-    if (!window.UnicornStudio) {
-      window.UnicornStudio = { isInitialized: false }
-    }
-
-    // Check if script is already loaded
-    const existingScript = document.querySelector('script[src*="unicornstudio.js"]')
-
-    // Function to initialize UnicornStudio after script loads
-    const initializeUnicornStudio = () => {
-      // Wait for UnicornStudio global to be available
-      const checkInit = () => {
-        // UnicornStudio is a global variable exposed by the script
-        const UnicornStudioGlobal = window.UnicornStudio
-        if (UnicornStudioGlobal && typeof UnicornStudioGlobal.init === 'function') {
-          if (window.UnicornStudio && !window.UnicornStudio.isInitialized) {
-            UnicornStudioGlobal.init()
-            window.UnicornStudio.isInitialized = true
-          }
-        } else {
-          // Retry after a short delay
-          setTimeout(checkInit, 50)
-        }
-      }
-      // Start checking after a brief delay to allow script to initialize
-      setTimeout(checkInit, 100)
-    }
-
-    if (!existingScript) {
-      // Script doesn't exist, load it
-      const script = document.createElement('script')
-      script.src =
-        'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.0/dist/unicornStudio.umd.js'
-      script.onload = initializeUnicornStudio
-      ;(document.head || document.body).appendChild(script)
-    } else if (window.UnicornStudio && !window.UnicornStudio.isInitialized) {
-      // Script exists but not initialized yet
-      initializeUnicornStudio()
-    }
-  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {

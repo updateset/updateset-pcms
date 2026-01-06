@@ -15,11 +15,20 @@ import { SearchIcon } from 'lucide-react'
 import { CMSLink } from '@/components/Link'
 import { cn } from '@/utilities/ui'
 
-import Clarity from '@microsoft/clarity'
 
 interface HeaderClientProps {
   data: Header
 }
+
+declare global {
+  interface Window {
+    UnicornStudio?: {
+      isInitialized: boolean
+      init?: () => void
+    }
+  }
+}
+
 
 const HamburgerIcon = ({ className, ...props }: React.SVGAttributes<SVGElement>) => (
   <svg
@@ -57,9 +66,22 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const pathname = usePathname()
 
   useEffect(() => {
-    const projectId = 'hgxsyq9qnv'
-    Clarity.init(projectId)
-  }, [])
+    // Initialize Unicorn Studio script
+    if (!window.UnicornStudio) {
+      window.UnicornStudio = { isInitialized: !1 }
+      const script = document.createElement('script')
+      script.src =
+        'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.0/dist/unicornStudio.umd.js'
+      script.onload = function () {
+        if (window.UnicornStudio && !window.UnicornStudio.isInitialized) {
+          window.UnicornStudio?.init?.()
+          window.UnicornStudio.isInitialized=!0
+        }
+      };(document.head || document.body).appendChild(script)
+    } else {
+      window.UnicornStudio?.init?.()
+    }
+  }, [pathname])
 
   useEffect(() => {
     setHeaderTheme('dark')

@@ -8,7 +8,7 @@ export const InitTheme: React.FC = () => {
       dangerouslySetInnerHTML={{
         __html: `
   (function () {
-    document.documentElement.setAttribute('data-theme', 'dark)
+    document.documentElement.setAttribute('data-theme', 'dark')
   })();
   `,
       }}

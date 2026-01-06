@@ -1,39 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
 import Image from 'next/image'
 
-declare global {
-  interface Window {
-    UnicornStudio?: {
-      isInitialized: boolean
-      init?: () => void
-    }
-  }
-  const UnicornStudio: {
-    init: () => void
-  }
-}
 
 export function Hero() {
-  useEffect(() => {
-    // Initialize Unicorn Studio script
-    if (!window.UnicornStudio) {
-      window.UnicornStudio = { isInitialized: false }
-      const script = document.createElement('script')
-      script.src =
-        'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.0/dist/unicornStudio.umd.js'
-      script.onload = function () {
-        if (window.UnicornStudio && !window.UnicornStudio.isInitialized) {
-          UnicornStudio.init()
-          if (window.UnicornStudio) {
-            window.UnicornStudio.isInitialized = true
-          }
-        }
-      }
-      ;(document.head || document.body).appendChild(script)
-    }
-  }, [])
 
   return (
     <section className="relative flex h-screen w-full items-end justify-start overflow-hidden">
