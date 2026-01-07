@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { myUserRecord } from '../../access/myUserRecord'
 import { computeName } from './hooks/computeName'
+import ResetPassword from './templates/resetPassword'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -17,7 +18,16 @@ export const Users: CollectionConfig = {
     defaultColumns: ['email', 'name', 'updatedAt'],
     useAsTitle: 'email',
   },
-  auth: true,
+  auth: {
+    forgotPassword: {
+      generateEmailHTML: (args) => {
+        const { token } = args || {}
+        // Use the token provided to allow your user to reset their password
+        const resetPasswordURL = `https://www.updateset.com.com/admin/reset/${token}`
+        return ResetPassword({ resetPasswordURL })
+      },
+    }
+  },
   fields: [
     {
       name: 'email',

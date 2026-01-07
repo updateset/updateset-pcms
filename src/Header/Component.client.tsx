@@ -73,9 +73,10 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       script.src =
         'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.0/dist/unicornStudio.umd.js'
       script.onload = function () {
-        if (window.UnicornStudio && !window.UnicornStudio.isInitialized) {
-          window.UnicornStudio?.init?.()
-          window.UnicornStudio.isInitialized=!0
+        const studio = window.UnicornStudio
+        if (studio && !studio.isInitialized) {
+          studio.init?.()
+          studio.isInitialized = true
         }
       };(document.head || document.body).appendChild(script)
     } else {
