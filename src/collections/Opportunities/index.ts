@@ -5,6 +5,7 @@ import { createAcl } from '@/access/createAcl'
 import { updateAcl } from '@/access/updateAcl'
 import { deleteAcl } from '@/access/deleteAcl'
 import { computeTotal } from './hooks/computeTotal'
+import { futureDate } from './hooks/futureDate'
 
 export const Opportunities: CollectionConfig<'opportunities'> = {
   slug: 'opportunities',
@@ -50,14 +51,23 @@ export const Opportunities: CollectionConfig<'opportunities'> = {
     {
       name: 'dueDate',
       type: 'date',
+      hooks: {
+        beforeChange: [futureDate],
+      }
     },
     {
       name: 'awardDate',
       type: 'date',
+      hooks: {
+        beforeChange: [futureDate],
+      }
     },
     {
       name: 'startDate',
       type: 'date',
+      hooks: {
+        beforeChange: [futureDate],
+      }
     },
     {
       name: 'stage',
@@ -116,11 +126,17 @@ export const Opportunities: CollectionConfig<'opportunities'> = {
           name: 'startDate',
           type: 'date',
           required: true,
+          hooks: {
+            beforeChange: [futureDate],
+          }
         },
         {
           name: 'endDate',
           type: 'date',
           required: true,
+          hooks: {
+            beforeChange: [futureDate],
+          }
         },
         {
           name: 'amount',
@@ -159,11 +175,17 @@ export const Opportunities: CollectionConfig<'opportunities'> = {
           name: 'startDate',
           type: 'date',
           required: true,
+          hooks: {
+            beforeChange: [futureDate],
+          }
         },
         {
           name: 'endDate',
           type: 'date',
           required: true,
+          hooks: {
+            beforeChange: [futureDate],
+          }
         },
         {
           name: 'reoccurring',

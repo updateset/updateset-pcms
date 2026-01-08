@@ -39,7 +39,19 @@ export default buildConfig({
       widgets: [
         {
           slug: 'user-stats',
-          ComponentPath: '@/components/UserStats/index.tsx',
+          ComponentPath: '@/components/widgets/UserStats/index.tsx',
+          minWidth: 'medium',
+          maxWidth: 'full',
+        },
+        {
+          slug: 'closed-opps',
+          ComponentPath: '@/components/widgets/Opportunities/closedOpps.tsx',
+          minWidth: 'medium',
+          maxWidth: 'full',
+        },
+        {
+          slug: 'closed-opps-by-company',
+          ComponentPath: '@/components/widgets/Opportunities/closedOppsByCompany.tsx',
           minWidth: 'medium',
           maxWidth: 'full',
         },

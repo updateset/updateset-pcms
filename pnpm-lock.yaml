@@ -104,6 +104,12 @@ importers:
       gsap:
         specifier: ^3.14.2
         version: 3.14.2
+      highcharts:
+        specifier: ^12.4.0
+        version: 12.4.0
+      highcharts-react-official:
+        specifier: ^3.2.3
+        version: 3.2.3(highcharts@12.4.0)(react@19.1.0)
       lucide-react:
         specifier: ^0.378.0
         version: 0.378.0(react@19.1.0)
@@ -4282,6 +4288,15 @@ packages:
 
   help-me@5.0.0:
     resolution: {integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==}
+
+  highcharts-react-official@3.2.3:
+    resolution: {integrity: sha512-2gL8bVGe6Pf75tSe6IB5Ucd0nIOJX7ZrpttQBZVrjN2J9StdVZ12aOinXHIOFvlc6EzP8CbN13WS8NUq+9mptA==}
+    peerDependencies:
+      highcharts: '>=6.0.0'
+      react: '>=16.8.0'
+
+  highcharts@12.4.0:
+    resolution: {integrity: sha512-o6UxxfChSUrvrZUbWrAuqL1HO/+exhAUPcZY6nnqLsadZQlnP16d082sg7DnXKZCk1gtfkyfkp6g3qkIZ9miZg==}
 
   hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
@@ -11305,6 +11320,13 @@ snapshots:
   headers-polyfill@4.0.3: {}
 
   help-me@5.0.0: {}
+
+  highcharts-react-official@3.2.3(highcharts@12.4.0)(react@19.1.0):
+    dependencies:
+      highcharts: 12.4.0
+      react: 19.1.0
+
+  highcharts@12.4.0: {}
 
   hoist-non-react-statics@3.3.2:
     dependencies:
