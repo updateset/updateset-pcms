@@ -20,6 +20,7 @@ import { Resources } from './collections/Resources'
 import { WebServiceUsers } from './collections/WebServiceUsers'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
+import { Workflow } from './Workflow/config'
 import { plugins } from './plugins'
 import { importExportPlugin } from '@payloadcms/plugin-import-export'
 import { defaultLexical } from '@/fields/defaultLexical'
@@ -84,6 +85,7 @@ export default buildConfig({
       ],
     },
   },
+  defaultDepth: 2,
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   email: nodemailerAdapter({
@@ -124,7 +126,7 @@ export default buildConfig({
     WebServiceUsers,
   ],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [Header, Footer, Workflow],
   plugins: [
     ...plugins,
     importExportPlugin({

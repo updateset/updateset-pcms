@@ -125,10 +125,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    workflow: Workflow;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    workflow: WorkflowSelect<false> | WorkflowSelect<true>;
   };
   locale: null;
   user:
@@ -2218,6 +2220,38 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "workflow".
+ */
+export interface Workflow {
+  id: string;
+  collections?:
+    | {
+        collection?:
+          | (
+              | 'access'
+              | 'categories'
+              | 'companies'
+              | 'groups'
+              | 'media'
+              | 'opportunities'
+              | 'pages'
+              | 'people'
+              | 'posts'
+              | 'resources'
+              | 'tasks'
+              | 'users'
+              | 'webServiceUsers'
+            )
+          | null;
+        path?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2256,6 +2290,22 @@ export interface FooterSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "workflow_select".
+ */
+export interface WorkflowSelect<T extends boolean = true> {
+  collections?:
+    | T
+    | {
+        collection?: T;
+        path?: T;
         id?: T;
       };
   updatedAt?: T;

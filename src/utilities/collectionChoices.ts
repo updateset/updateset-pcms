@@ -1,0 +1,15 @@
+export const collectionChoices = [
+    { label: 'Access', value: 'access' },
+    { label: 'Categories', value: 'categories' },
+    { label: 'Companies', value: 'companies' },
+    { label: 'Groups', value: 'groups' },
+    { label: 'Media', value: 'media' },
+    { label: 'Opportunities', value: 'opportunities' },
+    { label: 'Pages', value: 'pages' },
+    { label: 'People', value: 'people' },
+    { label: 'Posts', value: 'posts' },
+    { label: 'Resources', value: 'resources' },
+    { label: 'Tasks', value: 'tasks' },
+    { label: 'Users', value: 'users' },
+    { label: 'WebServiceUsers', value: 'webServiceUsers' },
+];

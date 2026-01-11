@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { adminOnly } from '@/access/adminOnly'
+import { collectionChoices } from '@/utilities/collectionChoices'
 
 export const Access: CollectionConfig<'access'> = {
   slug: 'access',
@@ -24,21 +25,7 @@ export const Access: CollectionConfig<'access'> = {
       type: 'select',
       unique: true,
       index: true,
-      options: [
-        { label: 'Access', value: 'access' },
-        { label: 'Categories', value: 'categories' },
-        { label: 'Companies', value: 'companies' },
-        { label: 'Groups', value: 'groups' },
-        { label: 'Media', value: 'media' },
-        { label: 'Opportunities', value: 'opportunities' },
-        { label: 'Pages', value: 'pages' },
-        { label: 'People', value: 'people' },
-        { label: 'Posts', value: 'posts' },
-        { label: 'Resources', value: 'resources' },
-        { label: 'Tasks', value: 'tasks' },
-        { label: 'Users', value: 'users' },
-        { label: 'WebServiceUsers', value: 'webServiceUsers' },
-      ],
+      options: collectionChoices,
       required: true,
     },
     {

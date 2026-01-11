@@ -4,6 +4,7 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { createAcl } from '@/access/createAcl'
 import { updateAcl } from '@/access/updateAcl'
 import { deleteAcl } from '@/access/deleteAcl'
+import { workflow } from '@/hooks/workflow'
 
 export const Tasks: CollectionConfig<'tasks'> = {
   slug: 'tasks',
@@ -13,7 +14,7 @@ export const Tasks: CollectionConfig<'tasks'> = {
     read: authenticatedOrPublished,
     update: ({ req }) => updateAcl(req, 'tasks'),
   },
-  defaultPopulate: {},
+  defaultPopulate: { assignedTo: true, opportunity: true },
   admin: {
     defaultColumns: ['title', 'updatedAt'],
     useAsTitle: 'title',
@@ -72,6 +73,9 @@ export const Tasks: CollectionConfig<'tasks'> = {
       relationTo: 'users',
     },
   ],
+  hooks: {
+    afterChange: [workflow],
+  },
   versions: {
     maxPerDoc: 50,
     drafts: false,

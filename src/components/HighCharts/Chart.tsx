@@ -3,14 +3,17 @@
 import React from 'react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-import { useEffect } from 'react'
+// import 'highcharts/modules/exporting'
+// import 'highcharts/modules/export-data'
+// import 'highcharts/modules/accessibility'
 
-const loadHighchartsModules = async () => {
-  Promise.all([
-    import("highcharts/modules/exporting"),
-    import("highcharts/modules/accessibility"),
-  ]);
-};
+// Load modules on client side
+if (typeof window !== 'undefined') {
+require('highcharts/modules/exporting').default
+require('highcharts/modules/export-data').default
+require('highcharts/modules/accessibility').default
+}
+
 
 interface ChartProps {
     className?: string
@@ -18,10 +21,32 @@ interface ChartProps {
 }
 
 export const Chart: React.FC<ChartProps> = ({ className, options }) => {
-
-    useEffect(() => {
-        loadHighchartsModules();
-    }, []);
+    // Enable exporting and data table by default if not specified
+    const chartOptions: Highcharts.Options = {
+        ...options,
+        exporting: {
+            enabled: true,
+            showTable: false, // Don't show by default, but provide the menu option
+            buttons: {
+                contextButton: {
+                    menuItems: [
+                        'viewFullscreen',
+                        'printChart',
+                        'separator',
+                        'downloadPNG',
+                        'downloadJPEG',
+                        'downloadPDF',
+                        'downloadSVG',
+                        'separator',
+                        'downloadCSV',
+                        'downloadXLS',
+                        'viewData',
+                    ]
+                }
+            },
+            ...options.exporting
+        }
+    }
 
     return (
         <div className={className || "w-full h-full min-h-[300px]"}>
@@ -35,7 +60,7 @@ export const Chart: React.FC<ChartProps> = ({ className, options }) => {
                     margin: 10px auto;
                     text-align: center;
                     width: 100%;
-                    max-width: 500px;
+                    max-width: 800px; /* Increased from 500px */
                     font-family: system-ui, -apple-system, sans-serif;
                 }
                 .highcharts-data-table caption {
@@ -54,7 +79,7 @@ export const Chart: React.FC<ChartProps> = ({ className, options }) => {
             `}</style>
             <HighchartsReact
                 highcharts={Highcharts}
-                options={options}
+                options={chartOptions}
             />
         </div>
     )
