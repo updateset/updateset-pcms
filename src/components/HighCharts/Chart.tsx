@@ -3,17 +3,9 @@
 import React from 'react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-// import 'highcharts/modules/exporting'
-// import 'highcharts/modules/export-data'
-// import 'highcharts/modules/accessibility'
-
-// Load modules on client side
-if (typeof window !== 'undefined') {
-require('highcharts/modules/exporting').default
-require('highcharts/modules/export-data').default
-require('highcharts/modules/accessibility').default
-}
-
+import 'highcharts/modules/exporting'
+import 'highcharts/modules/export-data'
+import 'highcharts/modules/accessibility'
 
 interface ChartProps {
     className?: string
